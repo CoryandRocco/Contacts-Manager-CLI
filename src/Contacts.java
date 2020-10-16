@@ -83,7 +83,7 @@ public class Contacts {
         List<String> fileContents = Files.readAllLines(filePath);
 
         for (String fileContent : fileContents) {
-            System.out.printf("%-10s" + "\n", fileContent);
+            System.out.print(fileContent + "\n");
         }
 
     }
@@ -98,7 +98,7 @@ public class Contacts {
         this.lastName = scanner.nextLine();
         System.out.println("Please enter the phone number of the contact");
         this.phoneNumber = scanner.nextLine();
-        List<String> contactsList = Arrays.asList(firstName + " " + lastName + " | " + phoneNumber + " ");
+        List<String> contactsList = Arrays.asList(firstName + " " + lastName + " | " + phoneNumber);
         Files.write(filePath, contactsList, StandardOpenOption.APPEND);
     }
 

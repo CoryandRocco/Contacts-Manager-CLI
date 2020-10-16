@@ -9,12 +9,14 @@ public class ContactsApp {
         String directoryName = "Contacts_Manager_App";
         String fileName = "contacts.txt";
 
+        Contacts.printMenu();
+
         Path dataFilePath = Contacts.createDirectoryAndFile(directoryName, fileName);
         Contacts contact = new Contacts();
-        contact.addContacts(dataFilePath);
+//        contact.addContacts(dataFilePath);
 
 //        contact.printFileContents(dataFilePath);
-        contact.deleteContact(dataFilePath);
+//        contact.deleteContact(dataFilePath);
 
         contact.printFileContents(dataFilePath);
 
