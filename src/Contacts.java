@@ -59,7 +59,7 @@ public class Contacts {
         Path directoryPath = Paths.get(directoryName);
         Path dataFilePath = Paths.get(directoryName, fileName);
 
-        //We have to create a directory first before we create before we create the file.
+        //We have to create a directory first before we create the file.
 
         if (Files.notExists(directoryPath)) {
             Files.createDirectories(directoryPath);
@@ -74,11 +74,6 @@ public class Contacts {
 
     //PRINT CONTACT LIST
     public static void printFileContents(Path filePath) throws IOException {
-//        System.out.println();
-//        List<String> fileContents = Files.readAllLines(filePath);
-//        for (int i = 0; i < fileContents.size(); i++) {
-//            System.out.printf("%s\n", fileContents.get(i));
-//        }
         // Create a header
         String header = "Name            | " + "Phone Number   | " + "\n"
                 +   "----------------------------------" + "\n";
@@ -88,7 +83,7 @@ public class Contacts {
         List<String> fileContents = Files.readAllLines(filePath);
 
         for (String fileContent : fileContents) {
-            System.out.printf("%-10s", fileContent);
+            System.out.printf("%-10s" + "\n", fileContent);
         }
 
     }
@@ -103,7 +98,7 @@ public class Contacts {
         this.lastName = scanner.nextLine();
         System.out.println("Please enter the phone number of the contact");
         this.phoneNumber = scanner.nextLine();
-        List<String> contactsList = Arrays.asList(firstName + " " + lastName + " | " + phoneNumber + "\n");
+        List<String> contactsList = Arrays.asList(firstName + " " + lastName + " | " + phoneNumber + " ");
         Files.write(filePath, contactsList, StandardOpenOption.APPEND);
     }
 
@@ -119,12 +114,11 @@ public class Contacts {
         List<String> modifiedList = new ArrayList<>();
 
         for (String contact: fileContents) {
-            if(!contact.contains(firstNameDelete+lastNameDelete)) {
+            if(!contact.contains(firstNameDelete + " " + lastNameDelete)) {
                 modifiedList.add(contact);
             }
         }
         Files.write(filePath, modifiedList);
     }
-
 
 }

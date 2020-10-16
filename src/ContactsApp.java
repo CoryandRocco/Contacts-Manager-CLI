@@ -14,7 +14,7 @@ public class ContactsApp {
         contact.addContacts(dataFilePath);
 
 //        contact.printFileContents(dataFilePath);
-//        contact.deleteContact(dataFilePath);
+        contact.deleteContact(dataFilePath);
 
         contact.printFileContents(dataFilePath);
 
