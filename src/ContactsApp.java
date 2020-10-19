@@ -11,16 +11,9 @@ public class ContactsApp {
         boolean toStartAgain;
         boolean toKeepAdding;
 
-        Contacts.printMenu();
 
         Path dataFilePath = Contacts.createDirectoryAndFile(directoryName, fileName);
-        Contacts contact = new Contacts();
-//        contact.addContacts(dataFilePath);
 
-//        contact.printFileContents(dataFilePath);
-//        contact.deleteContact(dataFilePath);
-
-        contact.printFileContents(dataFilePath);
 
         try {
             System.out.println("\n"+"Welcome to your contacts manager. What would you like to do?"+"\n");
@@ -34,9 +27,10 @@ public class ContactsApp {
                     case 2:
                         do {
                             Contacts newContact = new Contacts();
-                            contact.addContacts(dataFilePath);
+                            newContact.addContacts(dataFilePath);
                             toKeepAdding = Contacts.yesNo("Would you like to add another?");
                         }while(toKeepAdding);
+                        Contacts.printFileContents(dataFilePath);
                         break;
                     case 3:
                         Contacts.searchContact(dataFilePath);
@@ -46,11 +40,13 @@ public class ContactsApp {
                         Contacts.printFileContents(dataFilePath);
                         break;
                     case 5:
+                        System.out.println("Thank you for using Contacts Manager application, Have a fantastic day!");
                         System.exit(0);
                         break;
                 }
                 toStartAgain = Contacts.yesNo("Would you like to see the menu again?");
             } while (toStartAgain);
+            System.out.println("Thank you for using Contacts Manager application, Have a fantastic day!");
         } catch (IOException ioex) {
             System.out.println("Error");
         }

@@ -114,13 +114,14 @@ public class Contacts {
         List<String> modifiedList = new ArrayList<>();
 
         for (String contact: fileContents) {
-            if(!contact.contains(firstNameDelete + " " + lastNameDelete)) {
+            if(!contact.toLowerCase().contains(firstNameDelete.toLowerCase() + " " + lastNameDelete.toLowerCase())) {
                 modifiedList.add(contact);
             }
         }
         Files.write(filePath, modifiedList);
+        System.out.println("successfully, deleted contact: " + firstNameDelete + " " + lastNameDelete);
     }
-
+// Search Contacts
     public static void searchContact(Path filePath) throws IOException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter the first name of the contact you would like to find");
@@ -130,12 +131,17 @@ public class Contacts {
         List<String> fileContents = Files.readAllLines(filePath);
 
         for (String contact: fileContents) {
-            if (contact.contains(firstNameDelete + " " + lastNameDelete)) {
+            if (contact.toLowerCase().contains(firstNameDelete.toLowerCase() + " " + lastNameDelete.toLowerCase())) {
                 System.out.println(contact);
+                return;
             }
         }
-    }
+        System.out.println("Contact does not exist. Please try again.");
+        searchContact(filePath);
+        }
 
+
+// Continue Menu Prompt
     public static boolean yesNo(String prompt) {
         Scanner scanner = new Scanner(System.in);
         System.out.println(prompt);
