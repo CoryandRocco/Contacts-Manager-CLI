@@ -83,7 +83,7 @@ public class Contacts {
         List<String> fileContents = Files.readAllLines(filePath);
 
         for (String fileContent : fileContents) {
-            System.out.print(fileContent + "\n");
+            System.out.printf("%-16s", fileContent + "\n");
         }
 
     }
@@ -104,7 +104,7 @@ public class Contacts {
 
     //DELETE CONTACT
 
-    public void deleteContact(Path filePath) throws IOException {
+    public static void deleteContact(Path filePath) throws IOException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter the first name of the contact you would like to delete.");
         String firstNameDelete = scanner.nextLine();
@@ -120,5 +120,27 @@ public class Contacts {
         }
         Files.write(filePath, modifiedList);
     }
+
+    public static void searchContact(Path filePath) throws IOException {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please enter the first name of the contact you would like to find");
+        String firstNameDelete = scanner.nextLine();
+        System.out.println("Please enter the last name of the contact you would like to find.");
+        String lastNameDelete = scanner.nextLine();
+        List<String> fileContents = Files.readAllLines(filePath);
+
+        for (String contact: fileContents) {
+            if (contact.contains(firstNameDelete + " " + lastNameDelete)) {
+                System.out.println(contact);
+            }
+        }
+    }
+
+    public static boolean yesNo(String prompt) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(prompt);
+        String response = scanner.next();
+        return response.equalsIgnoreCase("yes") || response.equalsIgnoreCase("y") || response.equalsIgnoreCase("yeah") || response.equalsIgnoreCase("yea");
+    };
 
 }
