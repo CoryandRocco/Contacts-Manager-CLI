@@ -103,7 +103,6 @@ public class Contacts {
     }
 
     //DELETE CONTACT
-
     public void deleteContact(Path filePath) throws IOException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter the first name of the contact you would like to delete.");
@@ -119,6 +118,25 @@ public class Contacts {
             }
         }
         Files.write(filePath, modifiedList);
+    }
+
+    // Search Contact
+    public void searchContact(Path filePath) throws IOException {
+        System.out.println("Please enter the first name of the contact you would like to search for.");
+        String firstNameSearch = scanner.nextLine();
+        System.out.println("Please enter the last name of the contact you would like to search for.");
+        String lastNameSearch = scanner.nextLine();
+       List<String> fileContents = Files.readAllLines(filePath);
+       List<String> searchList = new ArrayList<>();
+
+       for (String contact : fileContents) {
+           if(contact.contains(firstNameSearch + " " + lastNameSearch)) {
+               searchList.add(contact);
+           }else{
+               System.out.println("Could not find contact you entered.");
+           }
+       }
+       Files.write(filePath, searchList);
     }
 
 }

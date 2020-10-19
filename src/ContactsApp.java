@@ -17,6 +17,7 @@ public class ContactsApp {
 
 //        contact.printFileContents(dataFilePath);
 //        contact.deleteContact(dataFilePath);
+        contact.searchContact(dataFilePath);
 
         contact.printFileContents(dataFilePath);
 
